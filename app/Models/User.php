@@ -53,4 +53,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expenses::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Notes::class);
+    }
+    public function btypes()
+    {
+        return $this->hasMany(Btype::class); // Assuming you have a "Btype" model
+    }
+
+    public function types()
+    {
+        return $this->hasMany(Types::class); // Assuming you have a "Btype" model
+    }
+
+
+    public function banks()
+    {
+        return $this->hasMany(Bank::class, 'created_by');
+    }
 }

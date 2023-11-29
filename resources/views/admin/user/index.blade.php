@@ -20,10 +20,11 @@
                     <tr>
 
                         <th>ID</th>
-                        <th>Username</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th>Edit</th>
+                        <th>Reset Password</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,9 @@
                         <tr>
 
                             <td>{{ $item->id }}</td>
-                            <td> <a href="{{ route('admin.user.summary', $item->id) }}">{{ $item->name }}</a></td>
+                            <td> <a
+                                    href="{{ route('admin.user.summary', $item->id) . '?year=' . date('Y') }}">{{ $item->name }}</a>
+                            </td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->role_as == '1' ? 'admin' : 'User' }}</td>
 
@@ -40,6 +43,11 @@
                                 <a href="{{ url('admin/edit-user/' . $item->id) }}"
                                     class="btn btn-outline-success">Edit</a>
                             </td>
+                            <td>
+                                <a href="{{ route('admin.reset-password', $item->id) }}"
+                                    class="btn btn-outline-success">Reset</a>
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>

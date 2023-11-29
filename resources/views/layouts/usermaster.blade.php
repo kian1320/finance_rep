@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ URL('assets/img/new-ust-logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ URL('assets/img/download.png') }}" type="image/png">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 

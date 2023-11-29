@@ -17,12 +17,19 @@ class Lexpenses extends Model
         'encashment',
         'description',
         'type_id',
+        'stype_id',
         'amount',
+        'others',
 
     ];
 
     public function type()
     {
         return $this->belongsTo(Types::class);
+    }
+
+    public function stype()
+    {
+        return $this->belongsTo(Stypes::class);
     }
 }

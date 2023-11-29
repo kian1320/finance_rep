@@ -21,10 +21,13 @@ return new class extends Migration
             $table->string('encashment');
             $table->string('description');
             $table->string('type_id');
+            $table->string('stype_id');
             $table->decimal('amount', 10, 2);
+            $table->string('others')->nullable();
             $table->string('created_by');
             $table->unsignedBigInteger('summary_id')->nullable();
             $table->foreign('summary_id')->references('id')->on('summary');
+            $table->integer('late_encash')->default('0'); //1 if it is added from the late encashment
             $table->timestamps();
         });
     }

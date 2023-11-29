@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Types;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Rules\UniqueTypeName;
 
 class TypesController extends Controller
 {
@@ -28,20 +29,27 @@ class TypesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', new UniqueTypeName(Auth::user()->id)],
         ]);
 
         $user = Auth::user();
 
-        $types = new types();
-        $types->name = $request->name;
-        $types->created_by = $user->id; // Assign the authenticated user's ID to the created_by field
-        $types->save();
+        // If validation passes, create and save the new Types record
+        $type = new Types();
+        $type->name = $request->name;
+        $type->created_by = $user->id;
 
-        // Optionally, you can redirect to another page after successful store
+        try {
+            // Attempt to save the record
+            $type->save();
+        } catch (\Exception $e) {
+            // Handle the exception for duplicate entry
+            return redirect()->back()->withErrors(['name' => 'The type name already exists in the database.'])->withInput();
+        }
+
+        // If successfully saved, redirect to another page
         return redirect('user/types')->with('message', 'Added');
     }
-
 
     public function edit($items_id)
     {

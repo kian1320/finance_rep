@@ -22,6 +22,8 @@ return new class extends Migration
             $table->decimal('totalstr', 10, 2)->nullable();
             $table->decimal('aftexpenses', 10, 2)->nullable();
             $table->integer('created_by');
+            $table->integer('submitted')->default('0'); //1 if it is submitted and 2 if approved
+            $table->integer('approved_by')->nullable();
             $table->timestamps();
         });
     }

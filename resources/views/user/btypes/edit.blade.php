@@ -7,7 +7,7 @@
 <div class="container-fluid px-4">
     <div class="card mt-3">
         <div class="card-header">
-            <h4 class="">Edit Budget Types</h4>
+            <h4 class="">Edit Receipt Types</h4>
         </div>
         <div class="cardbody">
 

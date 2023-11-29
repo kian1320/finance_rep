@@ -34,4 +34,17 @@ class Summary extends Model
     {
         return $this->hasMany(Expenses::class);
     }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
+
+    // Summary.php
+
+public function approvedBy()
+{
+    return $this->belongsTo(User::class, 'approved_by');
+}
+
 }

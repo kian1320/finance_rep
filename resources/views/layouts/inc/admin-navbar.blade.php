@@ -1,7 +1,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="{{ url('admin/dashboard') }}">Dashboard
-        <img src=" {{ URL('assets/img/new-ust-logo.png') }}" alt="logo" height="30px" class="src">
+        <img src=" {{ URL('assets/img/download.png') }}" alt="logo" height="30px" class="src">
     </a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i

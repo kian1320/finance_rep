@@ -43,7 +43,7 @@ class LexpensesFormRequest extends FormRequest
             ],
 
             'encashment' => [
-                'required',
+                'nullable',
                 'string',
                 'max:200'
             ],
@@ -55,6 +55,12 @@ class LexpensesFormRequest extends FormRequest
             ],
 
             'type_id' => [
+                'required',
+                'string',
+                'max:200'
+            ],
+
+            'stype_id' => [
                 'required',
                 'string',
                 'max:200'

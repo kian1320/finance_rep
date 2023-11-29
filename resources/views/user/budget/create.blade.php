@@ -1,6 +1,6 @@
 @extends('layouts.usermaster')
 @section('content')
-@section('title', 'items')
+@section('title', 'Financial Report')
 
 
 

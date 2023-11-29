@@ -26,60 +26,64 @@
         @if (session('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
-        <table id="Itemstable" class="table table-bordered table-striped">
+        <div class="table-responsive"> <!-- Add the responsive wrapper here -->
+            <table id="Itemstable" class="table table-bordered table-striped">
 
-            <thead>
-                <tr>
-
-                    <th>name</th>
-                    <th>Sub Types</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-
-
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($types as $item)
+                <thead>
                     <tr>
 
-                        <td>{{ $item->name }}</td>
+                        <th>name</th>
+                        <th>Sub Types</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
 
-
-
-
-
-                        <td align="center">
-                            <a href="{{ url('user/edit-types/' . $item->id) }}" class="btn btn-outline-primary">Edit</a>
-                        </td>
-
-                        <td align="center">
-                            <a href="{{ url('user/edit-types/' . $item->id) }}" class="btn btn-outline-success">Edit</a>
-                        </td>
-
-                        <td align="center">
-                            <a href="{{ url('user/delete-types/' . $item->id) }}" class="btn btn-outline-danger"
-                                onclick="event.preventDefault(); if(confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{ $item->id }}').submit(); }">
-                                Delete
-                            </a>
-                            <form id="delete-form-{{ $item->id }}"
-                                action="{{ url('user/delete-btypes/' . $item->id) }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
 
 
                     </tr>
-                @endforeach
-            </tbody>
+                </thead>
+                <tbody>
+                    @foreach ($types as $item)
+                        <tr>
+
+                            <td>{{ $item->name }}</td>
 
 
-        </table>
+
+
+
+
+                            <td align="center">
+                                <a href="{{ url('user/stypes/' . $item->id) }}"
+                                    class="btn btn-outline-primary">Add/View</a>
+                            </td>
+
+                            <td align="center">
+                                <a href="{{ url('user/edit-types/' . $item->id) }}"
+                                    class="btn btn-outline-success">Edit</a>
+                            </td>
+
+                            <td align="center">
+                                <a href="{{ url('user/delete-types/' . $item->id) }}" class="btn btn-outline-danger"
+                                    onclick="event.preventDefault(); if(confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{ $item->id }}').submit(); }">
+                                    Delete
+                                </a>
+                                <form id="delete-form-{{ $item->id }}"
+                                    action="{{ url('user/delete-types/' . $item->id) }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </td>
+
+
+                        </tr>
+                    @endforeach
+                </tbody>
+
+
+            </table>
+        </div>
         <div>
 
 

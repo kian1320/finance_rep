@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sub_types', function (Blueprint $table) {
+        Schema::create('ybudgets', function (Blueprint $table) {
             $table->id();
-            $table->integer('types_id');
-            $table->string('repair');
-            $table->integer('added_by');
+            $table->unsignedBigInteger('ysummary_id');
+            $table->unsignedBigInteger('btypes_id');
+            $table->unsignedBigInteger('bstypes_id');
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->string('created_by');
             $table->timestamps();
+            $table->foreign('ysummary_id')->references('id')->on('ysummary');
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_types');
+        Schema::dropIfExists('ybudgets');
     }
 };

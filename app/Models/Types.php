@@ -25,4 +25,9 @@ class Types extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function stypes()
+    {
+        return $this->hasMany(Stypes::class, 'types_id');
+    }
 }

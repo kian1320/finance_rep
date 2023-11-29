@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('btypes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique(); // Add the unique constraint here
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
-            $table->string('created_by');
         });
     }
 

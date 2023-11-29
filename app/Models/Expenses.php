@@ -17,7 +17,9 @@ class Expenses extends Model
         'encashment',
         'description',
         'type_id',
+        'stype_id',
         'amount',
+        'others',
 
     ];
 
@@ -27,7 +29,10 @@ class Expenses extends Model
     }
 
 
-
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
 
     public function type()
     {
@@ -37,5 +42,10 @@ class Expenses extends Model
     public function expenses()
     {
         return $this->hasMany(Expenses::class);
+    }
+
+    public function stype()
+    {
+        return $this->belongsTo(Stypes::class, 'stype_id');
     }
 }
