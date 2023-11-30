@@ -63,37 +63,52 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
 <!-- Include Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.26.3/dist/apexcharts.min.js"></script>
+<!-- Load Google Charts library -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-
-
-
-<script>
-    $(document).ready(function() {
-        var chartData = @json($data1);
-        var chartOptions = {
-            chart: {
-                type: 'pie',
-            },
-            labels: chartData.map(item => item.name),
-            series: chartData.map(item => item.total_amount),
-        };
-        var chart = new ApexCharts(document.querySelector("#pie-chart1"), chartOptions);
-        chart.render();
+<!-- Load the Visualization API and the corechart package -->
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
     });
 
-    var chartData2 = @json($data2);
-    var chartOptions2 = {
-        chart: {
-            type: 'pie',
-        },
-        labels: chartData2.map(item => item.name),
-        series: chartData2.map(item => item.total_amount),
-    };
-    var chart2 = new ApexCharts(document.querySelector("#pie-chart2"), chartOptions2);
-    chart2.render();
+    // Set a callback to run when the Google Visualization API is loaded
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+        // Chart 1
+        var chartData1 = google.visualization.arrayToDataTable([
+            ['Name', 'Total Amount'],
+            @foreach ($data1 as $item)
+                ['{{ $item['name'] }}', {{ $item['total_amount'] }}],
+            @endforeach
+        ]);
+
+        var options1 = {
+            title: 'Chart 1',
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('pie-chart1'));
+        chart1.draw(chartData1, options1);
+
+        // Chart 2
+        var chartData2 = google.visualization.arrayToDataTable([
+            ['Name', 'Total Amount'],
+            @foreach ($data2 as $item)
+                ['{{ $item['name'] }}', {{ $item['total_amount'] }}],
+            @endforeach
+        ]);
+
+        var options2 = {
+            title: 'Chart 2',
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('pie-chart2'));
+        chart2.draw(chartData2, options2);
+    }
 </script>
+
+
 
 
 
